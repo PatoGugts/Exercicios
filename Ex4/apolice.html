@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apólice de Seguro</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script>
+      
+    function calcularApolice() {
+      const nome = document.getElementById('nome').value;
+      const sexo = document.querySelector('input[name="sexo"]:checked').value;
+      const idade = parseInt(document.getElementById('idade').value);
+      const valorAutomovel = parseFloat(document.getElementById('valorAutomovel').value);
+      let valorApolice = 0;
+
+      if (sexo === 'masculino' && idade <= 25) {
+        valorApolice = valorAutomovel * 0.15;
+      } else if (sexo === 'masculino' && idade > 25) {
+        valorApolice = valorAutomovel * 0.10;
+      } else if (sexo === 'feminino') {
+        valorApolice = valorAutomovel * 0.08;
+      }
+
+      document.getElementById('valorApolice').value = `R$ ${valorApolice.toFixed(2)}`;
+    }
+  </script>
+</head>
+<body>
+  <div class="container mt-5">
+    <h2 class="text-center mb-4">Apólice de Seguro Automobilístico</h2>
+    <form>
+      <div class="mb-3">
+        <label for="nome" class="form-label">Nome do Segurado</label>
+        <input type="text" class="form-control" id="nome" placeholder="Digite o nome" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Sexo</label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="sexo" id="masculino" value="masculino" required>
+          <label class="form-check-label" for="masculino">Masculino</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" name="sexo" id="feminino" value="feminino" required>
+          <label class="form-check-label" for="feminino">Feminino</label>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="idade" class="form-label">Idade</label>
+        <input type="number" class="form-control" id="idade" placeholder="Digite a idade" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="valorAutomovel" class="form-label">Valor do Automóvel (R$)</label>
+        <input type="number" class="form-control" id="valorAutomovel" placeholder="Digite o valor do automóvel" required>
+      </div>
+
+      <button type="button" class="btn btn-primary w-100" onclick="calcularApolice()">Calcular Apólice</button>
+    </form>
+
+    <hr />
+
+    <div class="mt-4">
+      <label for="valorApolice" class="form-label">Valor da Apólice</label>
+      <input type="text" class="form-control" id="valorApolice" readonly>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
